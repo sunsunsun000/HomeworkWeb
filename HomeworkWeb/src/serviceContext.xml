@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ctx="http://www.springframework.org/schema/context"
+xmlns:http="http://servicemix.apache.org/http/1.0" xmlns:bar="http://testserver"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://servicemix.apache.org/http/1.0
+http://servicemix.apache.org/schema/servicemix-http-3.2.3.xsd"
+default-autowire="byName">
+	<bean id="userService" class="me.hupeng.homeworkweb.service.UserService" scope="prototype" autowire="default"></bean>
+	<bean id="classesService" class="me.hupeng.homeworkweb.service.ClassesService" scope="prototype" autowire="default"></bean>
+	<bean id="taskService" class="me.hupeng.homeworkweb.service.TaskService" scope="prototype" autowire="default"></bean>
+	<bean id="bugService" class="me.hupeng.homeworkweb.service.BugService" scope="prototype" autowire="default"></bean>
+	<bean id="homeworkService" class="me.hupeng.homeworkweb.service.HomeworkService" scope="prototype" autowire="default"></bean>
+	<bean id="choiceclassService" class="me.hupeng.homeworkweb.service.ChoiceclassService" scope="prototype" autowire="default"></bean>
+	<bean id="coursewareService" class="me.hupeng.homeworkweb.service.CoursewareService" scope="prototype" autowire="default"></bean>
+	<bean id="classnameService" class="me.hupeng.homeworkweb.service.ClassnameService" scope="prototype" autowire="default"></bean>
+	<bean id="studentService" class="me.hupeng.homeworkweb.service.StudentService" scope="prototype" autowire="default"></bean>
+</beans>

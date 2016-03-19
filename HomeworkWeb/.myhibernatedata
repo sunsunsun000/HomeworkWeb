@@ -1,0 +1,21 @@
+#MyEclipse Hibernate Properties
+#Thu Nov 05 13:48:00 CST 2015
+genBasicCompId=false
+sessionFactoryName=me.hupeng.homeworkweb.DAO.HibernateSessionFactory
+profile=
+daoSFId=
+jndiPath=
+detectM2M=false
+reStrategyClass=
+detectO2O=false
+springDaoFile=
+useJavaTypes=true
+keyGenerator=
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+genAnnotations=false
+reSettingsFile=
+configFile=/HomeworkWeb/src/hibernate.cfg.xml
+createConfigFile=true
+baseDaoClass=me.hupeng.homeworkweb.DAO.BaseHibernateDAO

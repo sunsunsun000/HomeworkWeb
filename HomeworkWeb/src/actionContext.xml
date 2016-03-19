@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ctx="http://www.springframework.org/schema/context"
+xmlns:http="http://servicemix.apache.org/http/1.0" xmlns:bar="http://testserver"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://servicemix.apache.org/http/1.0
+http://servicemix.apache.org/schema/servicemix-http-3.2.3.xsd"
+default-autowire="byName">
+	<!-- 拦截器 -->
+    <bean id="xssInterceptor" class="me.hupeng.homeworkweb.interceptor.XssInterceptor" scope="prototype" autowire="default"></bean>
+    
+    <!-- action bean对象 -->
+    <bean id="indexAction" class="me.hupeng.homeworkweb.action.IndexAction" scope="prototype" autowire="default"></bean>
+	<bean id="loginAction" class="me.hupeng.homeworkweb.action.LoginAction" scope="prototype" autowire="default"></bean>
+	<bean id="registerAction" class="me.hupeng.homeworkweb.action.RegisterAction" scope="prototype" autowire="default"></bean>
+	<bean id="studentHomeAction" class="me.hupeng.homeworkweb.action.HomeAction" scope="prototype" autowire="default"></bean>
+	<bean id="logoutAction" class="me.hupeng.homeworkweb.action.LogoutAction" scope="prototype" autowire="default"></bean>
+	<bean id="feedbackAction" class="me.hupeng.homeworkweb.action.FeedbackAction" scope="prototype" autowire="default"></bean>
+	<bean id="classInfoAction" class="me.hupeng.homeworkweb.action.ClassInfoAction" scope="prototype" autowire="default"></bean>
+	<bean id="showGradeAction" class="me.hupeng.homeworkweb.action.ShowGradeAction" scope="prototype" autowire="default"></bean>
+	<bean id="choiceClassAction" class="me.hupeng.homeworkweb.action.ChoiceClassAction" scope="prototype" autowire="default"></bean>
+	<bean id="deleteChoiceClassAction" class="me.hupeng.homeworkweb.action.DeleteChoiceClassAction" scope="prototype" autowire="default"></bean>
+	<bean id="addChoiceClassAction" class="me.hupeng.homeworkweb.action.AddChoiceClassAction" scope="prototype" autowire="default"></bean>
+	<bean id="taskInfoAction" class="me.hupeng.homeworkweb.action.TaskInfoAction" scope="prototype" autowire="default"></bean>
+	<bean id="changePasswordAction" class="me.hupeng.homeworkweb.action.ChangePasswordAction" scope="prototype" autowire="default"></bean>
+	<bean id="fileUploadAction" class="me.hupeng.homeworkweb.action.FileUploadAction" scope="prototype" autowire="default"></bean>
+	<bean id="addClassAction" class="me.hupeng.homeworkweb.action.AddClassAction" scope="prototype" autowire="default"></bean>
+	<bean id="addTaskAction" class="me.hupeng.homeworkweb.action.AddTaskAction" scope="prototype" autowire="default"></bean>
+	<bean id="changeNoticeAction" class="me.hupeng.homeworkweb.action.ChangeNoticeAction" scope="prototype" autowire="default"></bean>
+	<bean id="correctTaskAction" class="me.hupeng.homeworkweb.action.CorrectTaskAction" scope="prototype" autowire="default"></bean>
+	<bean id="fileDownloadAction" class="me.hupeng.homeworkweb.action.FileDownloadAction" scope="prototype" autowire="default"></bean>
+	<bean id="changeTaskInfoAction" class="me.hupeng.homeworkweb.action.ChangeTaskInfoAction" scope="prototype" autowire="default"></bean>
+	<bean id="coursewareInfoAction" class="me.hupeng.homeworkweb.action.CoursewareInfoAction" scope="prototype" autowire="default"></bean>
+	<bean id="uploadCoursewareAction" class="me.hupeng.homeworkweb.action.UploadCoursewareAction" scope="prototype" autowire="default"></bean>
+	<bean id="downloadCoursewareAction" class="me.hupeng.homeworkweb.action.DownloadCoursewareAction" scope="prototype" autowire="default"></bean>
+	<bean id="deleteCoursewareAction" class="me.hupeng.homeworkweb.action.DeleteCoursewareAction" scope="prototype" autowire="default"></bean>
+	<bean id="taskManagerAction" class="me.hupeng.homeworkweb.action.TaskManagerAction" scope="prototype" autowire="default"></bean>
+	<bean id="deleteTaskAction" class="me.hupeng.homeworkweb.action.DeleteTaskAction" scope="prototype" autowire="default"></bean>
+	<bean id="classManagerAction" class="me.hupeng.homeworkweb.action.ClassManagerAction" scope="prototype" autowire="default"></bean>
+	<bean id="deleteClassAction" class="me.hupeng.homeworkweb.action.DeleteClassAction" scope="prototype" autowire="default"></bean>
+	<bean id="addStudentAction" class="me.hupeng.homeworkweb.action.AddStudentAction" scope="prototype" autowire="default"></bean>
+	<bean id="showStudentAction" class="me.hupeng.homeworkweb.action.ShowStudentAction" scope="prototype" autowire="default"></bean>
+	<bean id="addGroupAction" class="me.hupeng.homeworkweb.action.AddGroupAction" scope="prototype" autowire="default"></bean>
+</beans>

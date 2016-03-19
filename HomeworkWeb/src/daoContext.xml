@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ctx="http://www.springframework.org/schema/context"
+xmlns:http="http://servicemix.apache.org/http/1.0" xmlns:bar="http://testserver"
+xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://servicemix.apache.org/http/1.0
+http://servicemix.apache.org/schema/servicemix-http-3.2.3.xsd"
+default-autowire="byName">
+
+    <bean id="sessionFactory"  class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="configLocations">
+			<value>classpath*:hibernate.cfg.xml</value>
+		</property>
+	</bean>
+    <bean id="userDAO" class="me.hupeng.homeworkweb.DAO.UserDAO" scope="prototype" autowire="default"></bean>
+    <bean id="classesDAO" class="me.hupeng.homeworkweb.DAO.ClassesDAO" scope="prototype" autowire="default"></bean>
+    <bean id="choiceclassDAO" class="me.hupeng.homeworkweb.DAO.ChoiceclassDAO" scope="prototype" autowire="default"></bean>
+    <bean id="bugDAO" class="me.hupeng.homeworkweb.DAO.BugDAO" scope="prototype" autowire="default"></bean>
+    <bean id="taskDAO" class="me.hupeng.homeworkweb.DAO.TaskDAO" scope="prototype" autowire="default"></bean>
+    <bean id="homeworkDAO" class="me.hupeng.homeworkweb.DAO.HomeworkDAO" scope="prototype" autowire="default"></bean>
+    <bean id="coursewareDAO" class="me.hupeng.homeworkweb.DAO.CoursewareDAO" scope="prototype" autowire="default"></bean>
+    <bean id="classnameDAO" class="me.hupeng.homeworkweb.DAO.ClassnameDAO" scope="prototype" autowire="default"></bean>
+    <bean id="studentDAO" class="me.hupeng.homeworkweb.DAO.StudentDAO" scope="prototype" autowire="default"></bean>
+</beans>

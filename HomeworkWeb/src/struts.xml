@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <!-- 配置一系列常量 -->
+    <constant name="struts.i18n.encoding" value="UTF-8"/>
+    <!-- constant name="struts.devMode" value="true"/ -->
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    <constant name="struts.objectFactory.spring.autoWire" value="auto"></constant>
+    <constant name="struts.multipart.saveDir" value="/tmp"/>
+    <constant name="struts.multipart.maxSize" value="100000000"/> 
+	<package name="default" namespace="/"
+		extends="struts-default, json-default">
+		<!-- 配置拦截器 -->
+		<interceptors>
+		    <!-- 定义xss拦截器 -->
+		    <interceptor name="xssInterceptor" class="xssInterceptor"></interceptor>
+		    <!-- 定义一个包含xss拦截的拦截栈 -->
+		    <interceptor-stack name="myDefault">
+		        <interceptor-ref name="xssInterceptor"></interceptor-ref>
+		        <interceptor-ref name="defaultStack"></interceptor-ref>
+		    </interceptor-stack>
+		</interceptors>
+		<!-- 这个必须配置，否则拦截器不生效 -->
+		<default-interceptor-ref name="myDefault"></default-interceptor-ref>
+		<action name="index" class="indexAction">
+		    <result name="success">jsp/login.jsp</result>
+		</action>
+		<action name="login" class="loginAction">
+		    <result name="error">jsp/login.jsp</result>
+		    <result name="success" type="redirect">/home.action</result>
+		</action>
+		<action name="register" class="registerAction">
+		    <result name="error_stu">jsp/registerStu.jsp</result>
+		    <result name="error_teacher">jsp/registerTeacher.jsp</result>
+		 	<result name="success" type="redirect">/home.action</result>
+		</action>
+		<action name="home" class="studentHomeAction">
+		    <result name="success">jsp/home.jsp</result>
+		    <result name="login" type="redirect">/logout.action</result>
+		</action>
+		<action name="logout" class="logoutAction">
+		    <result name="success" type="redirect">/login.action</result>
+		</action>
+		<action name="feedback" class="feedbackAction">
+		    <result name="success">jsp/feedback.jsp</result>
+		    <result name="login" type="redirect">/logout.action</result>
+		</action>
+		<action name="classInfo" class="classInfoAction">
+		    <result name="success">jsp/classInfo.jsp</result>
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="choiceClass" type="redirect">/choiceClass.action</result>
+		    <result name="classManager" type="redirect">/classManager.action</result>
+		</action>
+		<action name="showGrade" class="showGradeAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success">jsp/showGrade.jsp</result>
+		</action>
+		<action name="choiceClass" class="choiceClassAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success">jsp/choiceClass.jsp</result>
+		</action>
+		<action name="deleteChoiceClass" class="deleteChoiceClassAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success" type="redirect">/showStudent.action?classId=${classId}</result>
+		</action>
+		<action name="addChoiceClass" class="addChoiceClassAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success" type="redirect">/choiceClass.action</result>
+		</action>
+		<action name="taskInfo" class="taskInfoAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success">jsp/taskInfo.jsp</result>
+		    <result name="message">/jsp/message.jsp</result>
+		</action>
+		<action name="changePassword" class="changePasswordAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success">jsp/changePassword.jsp</result>
+		</action>
+		
+		<action name="fileUpload" class="fileUploadAction" method="execute">
+            <!-- 动态设置savePath的属性值 -->
+            <param name="savePath">/uploadFile</param>
+            <result name="success">/jsp/taskInfo.jsp</result>
+            <result name="input">/jsp/uploadResult.jsp</result>
+	        <result name="login" type="redirect">/logout.action</result>
+	        <result name="message">/jsp/message.jsp</result>
+        </action>
+        
+		<action name="addClass" class="addClassAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="message">/jsp/message.jsp</result>
+		    <result name="success">/jsp/blank.jsp</result>
+		</action>
+		
+		<action name="addTask" class="addTaskAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="message">/jsp/message.jsp</result>
+		    <result name="success">/jsp/blank.jsp</result>
+		</action>
+
+		<action name="changeNotice" class="changeNoticeAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="message">/jsp/message.jsp</result>
+		    <result name="success">/jsp/blank.jsp</result>
+		</action>
+		
+		<action name="correctTask" class="correctTaskAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="message">/jsp/message.jsp</result>
+		    <result name="success">/jsp/correctTask.jsp</result>
+		    <result name="blank">/jsp/blank.jsp</result>
+		</action>
+		<action name="fileDownload" class="fileDownloadAction">
+		    <result name="login" type="redirect">/login.action</result>
+		    <result name="message">/jsp/message.jsp</result>
+		    <!-- 配置类型为stream的结果 -->
+		    <result name="success" type="stream">
+		        <!-- 指定下载文件的类型 -->
+		        <!--
+		        <param name="contentType"></param>
+		        -->
+		        <param name="contentType">application/octet-stream</param>
+		        <param name="directory">./</param> 
+		        <param name="contentDisposition">attachement;filename=${filename}</param>
+		       	<param name="inputName">targetFile</param>
+		       	<param name="bufferSize">4096</param>
+		    </result>
+		</action>
+		<action name="changeTaskInfo" class="changeTaskInfoAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success">/jsp/blank.jsp</result>
+		</action>
+		<action name="coursewareInfo" class="coursewareInfoAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success">/jsp/coursewareInfo.jsp</result>
+		    <result name="message">/jsp/message.jsp</result>
+		</action>
+		<action name="uploadCourseware" class="uploadCoursewareAction" method="execute">
+            <!-- 动态设置savePath的属性值 -->
+            <param name="savePath">/uploadFile</param>
+            <result name="success">/jsp/taskInfo.jsp</result>
+            <result name="input">/jsp/uploadResult.jsp</result>
+	        <result name="login" type="redirect">/logout.action</result>
+	        <result name="message">/jsp/message.jsp</result>
+        </action>
+        <action name="downloadCourseware" class="downloadCoursewareAction">
+		    <result name="login" type="redirect">/login.action</result>
+		    <result name="message">/jsp/message.jsp</result>
+		    <!-- 配置类型为stream的结果 -->
+		    <result name="success" type="stream">
+		        <!-- 指定下载文件的类型 -->
+		        <!--
+		        <param name="contentType"></param>
+		        -->
+		        <param name="contentType">application/octet-stream</param>
+		        <param name="directory">./</param> 
+		        <param name="contentDisposition">attachement;filename=${filename}</param>
+		       	<param name="inputName">targetFile</param>
+		       	<param name="bufferSize">4096</param>
+		    </result>
+		</action>
+		<action name="deleteCourseware" class="deleteCoursewareAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success" type="redirect">/coursewareInfo.action?classId=${ classId}</result>
+		    <result name="message">/jsp/message.jsp</result>
+		</action>
+		<action name="taskManager" class="taskManagerAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success">/jsp/taskManager.jsp</result>
+		    <result name="message">/jsp/message.jsp</result>
+		</action>
+		
+		<action name="deleteTask" class="deleteTaskAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success" type="redirect">/taskManager.action?classId=${ classId}</result>
+		    <result name="message">/jsp/message.jsp</result>
+		</action>
+		
+		<action name="classManager" class="classManagerAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success">/jsp/classManager.jsp</result>
+		    <result name="message">/jsp/message.jsp</result>
+		</action>
+		
+		<action name="deleteClass" class="deleteClassAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success" type="redirect">/classManager.action</result>
+		    <result name="message">/jsp/message.jsp</result>
+		</action>
+		
+		<action name="addStudent" class="addStudentAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success">/jsp/addStudent.jsp</result>
+		    <result name="message">/jsp/message.jsp</result>
+		</action>
+		
+		<action name="showStudent" class="showStudentAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success">/jsp/showStudent.jsp</result>
+		    <result name="message">/jsp/message.jsp</result>
+		</action>
+		
+		<action name="addGroup" class="addGroupAction">
+		    <result name="login" type="redirect">/logout.action</result>
+		    <result name="success">/jsp/addGroup.jsp</result>
+		    <result name="message">/jsp/message.jsp</result>
+		    <result name="back" type="redirect">/showStudent.action?classId=${classId }</result>
+		</action>
+		
+	</package>
+</struts>    
